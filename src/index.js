@@ -176,6 +176,16 @@ const DateRangePicker = ({
     });
   };
 
+  const thisYear = () => {
+    setSelecting(false);
+    onChange({
+      date: null,
+      startDate: _moment().startOf("year"),
+      endDate: _moment().endOf("year"),
+      displayedDate: _moment(),
+    });
+  };
+
   const select = useCallback(
     (day) => {
       let _date = _moment(displayedDate);
@@ -367,13 +377,6 @@ const DateRangePicker = ({
             </View>
             {presetButtons && (
               <View style={mergedStyles.buttonContainer}>
-                <Button
-                  buttonStyle={buttonStyle}
-                  buttonTextStyle={buttonTextStyle}
-                  onPress={today}
-                >
-                  Today
-                </Button>
                 {range && (
                   <>
                     <Button
@@ -381,14 +384,21 @@ const DateRangePicker = ({
                       buttonTextStyle={buttonTextStyle}
                       onPress={thisWeek}
                     >
-                      This Week
+                      Bu Hafta
                     </Button>
                     <Button
                       buttonStyle={buttonStyle}
                       buttonTextStyle={buttonTextStyle}
                       onPress={thisMonth}
                     >
-                      This Month
+                      Bu Ay
+                    </Button>
+                    <Button
+                      buttonStyle={buttonStyle}
+                      buttonTextStyle={buttonTextStyle}
+                      onPress={thisYear}
+                    >
+                      Bu Yıl
                     </Button>
                   </>
                 )}
